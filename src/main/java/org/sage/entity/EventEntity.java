@@ -28,7 +28,7 @@ public class EventEntity {
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "topic_id", referencedColumnName = "id", nullable = false)
-    public TopicEntity topic;
+    public TopicEntity      topic;
 
     @Column(name = "slug")
     public String           slug;

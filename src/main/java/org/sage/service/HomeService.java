@@ -15,6 +15,7 @@ import java.util.List;
 public class HomeService {
 
     private final TopicRepository topicRepository;
+
     private final TopicMapper topicMapper;
 
     public LandingPageResponse getTopicsForHomepage() {
