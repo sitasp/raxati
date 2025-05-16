@@ -9,9 +9,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import org.sage.entity.TopicEntity;
 import org.sage.object.response.LandingPageResponse;
-import org.sage.repository.TopicRepository;
 import org.sage.service.HomeService;
 
 import java.util.List;
