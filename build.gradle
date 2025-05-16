@@ -9,15 +9,26 @@ repositories {
 }
 
 dependencies {
+    // import the Quarkus Bill-Of-Materials (BOM)
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+
     implementation 'io.quarkus:quarkus-rest'
     implementation 'io.quarkus:quarkus-rest-jackson'
     implementation 'io.quarkus:quarkus-hibernate-orm-panache'
     implementation 'io.quarkus:quarkus-jdbc-postgresql'
     implementation 'io.quarkus:quarkus-arc'
+    // https://mvnrepository.com/artifact/io.quarkus/quarkus-flyway
+    implementation 'io.quarkus:quarkus-flyway:3.22.3'
     implementation 'io.quarkus:quarkus-hibernate-orm'
+    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:rest-assured'
+
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    compileOnly 'org.projectlombok:lombok:1.18.38'
+    annotationProcessor 'org.projectlombok:lombok:1.18.38'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
 }
 
 group 'org.sage'

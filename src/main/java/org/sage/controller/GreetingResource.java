@@ -1,6 +1,5 @@
-package org.sage;
+package org.sage.controller;
 
-import io.quarkus.logging.Log;
 import io.smallrye.common.annotation.RunOnVirtualThread;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
