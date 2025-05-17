@@ -11,10 +11,12 @@ import org.sage.entity.TopicEntity;
 import org.sage.mapper.TopicMapper;
 import org.sage.object.domain.Topic;
 import org.sage.repository.TopicRepository;
+import org.sage.util.IdGenerator;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 
 @ApplicationScoped
 @AllArgsConstructor
@@ -70,6 +72,7 @@ public class TopicService {
     private void preprocess(Topic topic) {
         String generatedSlug = slugify.slugify(topic.getTitle());
         topic.setSlug(generatedSlug);
+        topic.setId(IdGenerator.newUuid());
         if(Objects.isNull(topic.getCreatedAt())){
             topic.setCreatedAt(LocalDateTime.now());
         }
@@ -83,6 +86,9 @@ public class TopicService {
         if(Objects.isNull(topic.getUpdatedBy())) {
             topic.setUpdatedBy(RaxatiConstants.RAXATI_BOT);
         }
+        topic.setNumberOfLikes(0L);
+        topic.setNumberOfViews(0L);
+        topic.setStatus("active");
     }
 
     private void validate(Topic topic) {

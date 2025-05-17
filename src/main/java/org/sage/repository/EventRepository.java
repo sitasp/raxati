@@ -10,17 +10,17 @@ import java.util.Optional;
 @ApplicationScoped
 public class EventRepository implements PanacheRepository<EventEntity> {
     public Optional<EventEntity> findBySlug(String slug) {
-        return find("slug = ?1 and (is_deleted is null or is_deleted = false)", slug)
+        return find("slug = ?1 and (isDeleted is null or isDeleted = false)", slug)
                 .firstResultOptional();
     }
 
     public Optional<EventEntity> findById(String id){
-        return find("id = ?1 and (is_deleted is null or is_deleted = false)", id)
+        return find("id = ?1 and (isDeleted is null or isDeleted = false)", id)
                 .firstResultOptional();
     }
 
     public List<EventEntity> findByTopicId(String topicId){
-        return find("topic_id = ?1 and (is_deleted is null or is_deleted = false)", topicId)
+        return find("topic = ?1 and (isDeleted is null or isDeleted = false)", topicId)
                 .list();
     }
 }

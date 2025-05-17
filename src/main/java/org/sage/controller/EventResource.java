@@ -7,7 +7,6 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.sage.object.domain.Event;
 import org.sage.service.EventService;
-import org.sage.service.TopicService;
 import org.sage.util.ResourceUtils;
 
 import java.util.List;
@@ -21,9 +20,6 @@ public class EventResource {
 
     @Inject
     EventService eventService;
-
-    @Inject
-    TopicService topicService;
 
     @GET
     @Path("/slug/{slug}")
@@ -41,8 +37,7 @@ public class EventResource {
 
     @POST
     @Path("/create")
-    public Response createEvent(Event event, String topicId) {
-        event.setTopicId(topicId);
+    public Response createEvent(Event event) {
         Optional<Event> eventOpt = eventService.saveEvent(event);
         return ResourceUtils.requireOrBadRequest(eventOpt, "Event could not be created");
     }

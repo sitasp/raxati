@@ -12,12 +12,12 @@ import java.util.Optional;
 public class TopicRepository implements PanacheRepository<TopicEntity> {
 
     public Optional<TopicEntity> findBySlug(String slug) {
-        return find("slug = ?1 and (is_deleted is null or is_deleted = false)", slug)
+        return find("slug = ?1 and (isDeleted is null or isDeleted = false)", slug)
                 .firstResultOptional();
     }
 
     public Optional<TopicEntity> findById(String id){
-        return find("id = ?1 and (is_deleted is null or is_deleted = false)", id)
+        return find("id = ?1 and (isDeleted is null or isDeleted = false)", id)
                 .firstResultOptional();
     }
 }
