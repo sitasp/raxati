@@ -1,4 +1,4 @@
-package org.sage.utils;
+package org.sage.util;
 
 import jakarta.ws.rs.BadRequestException;
 import jakarta.ws.rs.core.Response;

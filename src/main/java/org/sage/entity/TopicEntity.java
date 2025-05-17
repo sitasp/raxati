@@ -14,48 +14,48 @@ public class TopicEntity {
 
     @Id
     @Column(name = "id")
-    public String           id;
+    private String           id;
 
     @Column(name = "title")
-    public String           title;
+    private String           title;
 
     @Nullable
     @Column(name = "description", columnDefinition = "TEXT")
-    public String           description;
+    private String           description;
 
     @Column(name = "number_of_views")
-    public Long             numberOfViews;
+    private Long             numberOfViews;
 
     @Column(name = "number_of_likes")
-    public Long             numberOfLikes;
+    private Long             numberOfLikes;
 
     @Column(name = "slug")
-    public String           slug;
+    private String           slug;
 
     @Column(name = "status")
-    public String           status;
+    private String           status;
 
     @Nullable
     @Column(name = "is_deleted")
-    public Boolean          isDeleted;
+    private Boolean          isDeleted;
 
     @Column(name = "created_at")
-    public LocalDateTime    createdAt;
+    private LocalDateTime    createdAt;
 
     @Column(name = "updated_at")
-    public LocalDateTime    updatedAt;
+    private LocalDateTime    updatedAt;
 
     @Nullable
     @Column(name = "deleted_at")
-    public LocalDateTime    deletedAt;
+    private LocalDateTime    deletedAt;
 
     @Column(name = "created_by")
-    public String           createdBy;
+    private String           createdBy;
 
     @Column(name = "updated_by")
-    public String           updatedBy;
+    private String           updatedBy;
 
     @Nullable
     @Column(name = "deleted_by")
-    public String           deletedBy;
+    private String           deletedBy;
 }

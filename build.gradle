@@ -9,6 +9,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'io.quarkus:quarkus-hibernate-validator'
     // import the Quarkus Bill-Of-Materials (BOM)
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
 
@@ -21,6 +22,7 @@ dependencies {
     implementation 'io.quarkus:quarkus-flyway:3.22.3'
     implementation 'io.quarkus:quarkus-hibernate-orm'
     implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+    implementation 'com.github.slugify:slugify:3.0.7'
 
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:rest-assured'
