@@ -29,6 +29,7 @@ CREATE TABLE event (
   number_of_views   BIGINT          DEFAULT 0   NOT NULL,
   topic_id          VARCHAR(50)     NOT NULL,
   slug              VARCHAR(255)    NOT NULL UNIQUE,
+  status            VARCHAR(50)     NOT NULL,
   is_deleted        BOOLEAN,
   created_at        TIMESTAMP       DEFAULT NOW() NOT NULL,
   updated_at        TIMESTAMP       DEFAULT NOW() NOT NULL,

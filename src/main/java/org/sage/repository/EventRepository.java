@@ -20,7 +20,7 @@ public class EventRepository implements PanacheRepository<EventEntity> {
     }
 
     public List<EventEntity> findByTopicId(String topicId){
-        return find("topic = ?1 and (isDeleted is null or isDeleted = false)", topicId)
+        return find("topic.id = ?1 and (isDeleted is null or isDeleted = false)", topicId)
                 .list();
     }
 }
