@@ -19,7 +19,7 @@ public class HomeService {
     private final TopicMapper topicMapper;
 
     public LandingPageResponse getTopicsForHomepage() {
-        List<TopicEntity> fetchedTopicEntities = topicRepository.findAll().list();
+        List<TopicEntity> fetchedTopicEntities = TopicEntity.findAll().list();
         List<Topic> fetchedTopics = topicMapper.toDomainList(fetchedTopicEntities);
         LandingPageResponse response = new LandingPageResponse();
         response.setLiveNews(fetchedTopics);

@@ -1,5 +1,6 @@
 package org.sage.repository;
 
+import com.github.f4b6a3.ulid.Ulid;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import org.sage.entity.EventEntity;
@@ -15,7 +16,11 @@ public class EventRepository implements PanacheRepository<EventEntity> {
     }
 
     public Optional<EventEntity> findById(String id){
-        return find("id = ?1 and (isDeleted is null or isDeleted = false)", id)
+        if (id == null || id.isEmpty()) {
+            return Optional.empty();
+        }
+        Ulid ulid = Ulid.from(id);
+        return find("id = ?1 and (isDeleted is null or isDeleted = false)", ulid)
                 .firstResultOptional();
     }
 

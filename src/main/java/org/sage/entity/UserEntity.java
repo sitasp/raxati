@@ -1,21 +1,13 @@
 package org.sage.entity;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Entity(name = "user")
-public class UserEntity extends PanacheEntityBase {
-
-    @Id
-    @UuidGenerator
-    public UUID             id;
+public class UserEntity extends BaseULIDEntity {
 
     @Column(name = "user_name", unique = true, nullable = false)
     public String           userName;

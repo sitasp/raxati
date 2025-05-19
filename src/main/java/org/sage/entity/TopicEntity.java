@@ -10,11 +10,7 @@ import java.time.LocalDateTime;
 
 @Entity(name = "topic")
 @Data
-public class TopicEntity {
-
-    @Id
-    @Column(name = "id")
-    private String           id;
+public class TopicEntity extends BaseULIDEntity {
 
     @Column(name = "title")
     private String           title;

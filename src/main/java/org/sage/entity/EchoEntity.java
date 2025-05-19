@@ -1,22 +1,14 @@
 package org.sage.entity;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
-public class EchoEntity extends PanacheEntityBase {
-
-    @Id
-    @UuidGenerator
-    private UUID            id;
+public class EchoEntity extends BaseULIDEntity {
 
     @ManyToOne
     @JoinColumn(name = "author_id", referencedColumnName = "id", nullable = false)

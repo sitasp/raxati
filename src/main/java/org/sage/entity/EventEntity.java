@@ -1,5 +1,6 @@
 package org.sage.entity;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -8,11 +9,7 @@ import java.time.LocalDateTime;
 
 @Entity(name = "event")
 @Data
-public class EventEntity {
-
-    @Id
-    @Column(name = "id")
-    public String   id;
+public class EventEntity extends BaseULIDEntity {
 
     @Column(name = "name")
     public String   name;

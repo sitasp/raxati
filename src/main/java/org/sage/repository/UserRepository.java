@@ -1,5 +1,6 @@
 package org.sage.repository;
 
+import com.github.f4b6a3.ulid.Ulid;
 import io.vertx.ext.auth.User;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -11,7 +12,11 @@ import java.util.Optional;
 public class UserRepository {
 
     public Optional<UserEntity> findUserById(String id) {
-        return UserEntity.find("id = ?1 AND (isDeleted IS NULL OR isDeleted = false)", id)
+        if (id == null || id.isEmpty()) {
+            return Optional.empty();
+        }
+        Ulid ulid = Ulid.from(id);
+        return UserEntity.find("id = ?1 AND (isDeleted IS NULL OR isDeleted = false)", ulid)
                 .firstResultOptional();
     }
 

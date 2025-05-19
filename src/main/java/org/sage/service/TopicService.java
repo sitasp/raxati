@@ -16,6 +16,7 @@ import org.sage.util.IdGenerator;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 
 @ApplicationScoped
 @AllArgsConstructor
@@ -53,7 +54,7 @@ public class TopicService {
             preprocess(topic);
 
             TopicEntity entity = topicMapper.toEntity(topic);
-            topicRepository.persist(entity);
+            TopicEntity.persist(entity);
 
             Topic saved = topicMapper.toDomain(entity);
 

@@ -24,6 +24,8 @@ dependencies {
     implementation 'io.quarkus:quarkus-hibernate-orm'
     implementation 'org.mapstruct:mapstruct:1.5.5.Final'
     implementation 'com.github.slugify:slugify:3.0.7'
+    // https://mvnrepository.com/artifact/com.github.f4b6a3/ulid-creator
+    implementation 'com.github.f4b6a3:ulid-creator:5.2.3'
 
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:rest-assured'
