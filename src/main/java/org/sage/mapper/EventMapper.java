@@ -21,7 +21,7 @@ public abstract class EventMapper implements BaseMapper<Event, EventEntity> {
     TopicRepository topicRepository;
 
     @AfterMapping
-    protected void extractTopicId(EventEntity entity, @MappingTarget Event domain) {
+    protected void e2d(EventEntity entity, @MappingTarget Event domain) {
         TopicEntity topic = entity.getTopic();
         if (Objects.nonNull(topic)) {
             domain.setTopicId(topic.getId());
@@ -30,7 +30,7 @@ public abstract class EventMapper implements BaseMapper<Event, EventEntity> {
 
     @AfterMapping
     @Transactional
-    protected void setTopicEntity(Event domain, @MappingTarget EventEntity entity) {
+    protected void d2e(Event domain, @MappingTarget EventEntity entity) {
         String topicId = domain.getTopicId();
         if (Objects.nonNull(topicId)) {
             TopicEntity topic = topicRepository.findById(topicId)
