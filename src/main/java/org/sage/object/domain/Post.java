@@ -3,6 +3,7 @@ package org.sage.object.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -15,6 +16,7 @@ import java.util.List;
 public class Post {
     private String          id;
     private String          authorId;
+    @NotBlank
     private String          content;
     private String          parentPostId;
     private String          resharedPostId;

@@ -39,12 +39,20 @@ public class PostService {
     }
 
     @Transactional
-    public Post createPost(Post post) {
-        validate(post);
-        preprocess(post);
-        PostEntity postEntity = postMapper.toEntity(post);
-        postEntity.persist();
-        return postMapper.toDomain(postEntity);
+    public Optional<Post> createPost(Post post) {
+        try{
+            validate(post);
+            preprocess(post);
+            PostEntity postEntity = postMapper.toEntity(post);
+            postEntity.persist();
+
+            Post saved = postMapper.toDomain(postEntity);
+            return Optional.of(saved);
+        }
+        catch (Exception e){
+            log.error("Error while creating post: {}", e.getMessage());
+            return Optional.empty();
+        }
     }
 
     private void preprocess(Post post) {
