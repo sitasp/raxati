@@ -15,21 +15,10 @@ import java.util.Objects;
 
 @ApplicationScoped
 @Mapper(componentModel = "cdi", unmappedTargetPolicy = ReportingPolicy.IGNORE)
-public abstract class EventMapper {
+public abstract class EventMapper implements BaseMapper<Event, EventEntity> {
 
     @Inject
     TopicRepository topicRepository;
-
-    public abstract List<Event> toDomainList(List<EventEntity> entities);
-
-    public abstract Event toDomain(EventEntity eventEntity);
-
-    @InheritInverseConfiguration(name = "toDomain")
-    public abstract EventEntity toEntity(Event event);
-
-    public abstract void updateEntityFromDomain(Event event, @MappingTarget EventEntity eventEntity);
-
-    public abstract void updateDomainFromEntity(EventEntity eventEntity, @MappingTarget Event event);
 
     @AfterMapping
     protected void extractTopicId(EventEntity entity, @MappingTarget Event domain) {
