@@ -2,7 +2,6 @@ package org.sage.object.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
