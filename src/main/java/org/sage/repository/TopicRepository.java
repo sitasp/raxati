@@ -21,8 +21,7 @@ public class TopicRepository {
         if (id == null || id.isEmpty()) {
             return Optional.empty();
         }
-        Ulid ulid = Ulid.from(id);
-        return TopicEntity.find("id = ?1 and (isDeleted is null or isDeleted = false)", ulid)
+        return TopicEntity.find("id = ?1 and (isDeleted is null or isDeleted = false)", id)
                 .firstResultOptional();
     }
 }

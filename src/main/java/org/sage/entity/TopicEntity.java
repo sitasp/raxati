@@ -3,12 +3,11 @@ package org.sage.entity;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import java.time.LocalDateTime;
-
-@Entity(name = "topic")
+@EqualsAndHashCode(callSuper = true)
+@Entity(name = "topics")
 @Data
 public class TopicEntity extends BaseULIDEntity {
 
@@ -30,28 +29,4 @@ public class TopicEntity extends BaseULIDEntity {
 
     @Column(name = "status")
     private String           status;
-
-    @Nullable
-    @Column(name = "is_deleted")
-    private Boolean          isDeleted;
-
-    @Column(name = "created_at")
-    private LocalDateTime    createdAt;
-
-    @Column(name = "updated_at")
-    private LocalDateTime    updatedAt;
-
-    @Nullable
-    @Column(name = "deleted_at")
-    private LocalDateTime    deletedAt;
-
-    @Column(name = "created_by")
-    private String           createdBy;
-
-    @Column(name = "updated_by")
-    private String           updatedBy;
-
-    @Nullable
-    @Column(name = "deleted_by")
-    private String           deletedBy;
 }

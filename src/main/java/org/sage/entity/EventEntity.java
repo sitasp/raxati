@@ -1,13 +1,14 @@
 package org.sage.entity;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.time.LocalDateTime;
 
-@Entity(name = "event")
+@EqualsAndHashCode(callSuper = true)
+@Entity(name = "events")
 @Data
 public class EventEntity extends BaseULIDEntity {
 
@@ -32,28 +33,4 @@ public class EventEntity extends BaseULIDEntity {
 
     @Column(name = "status")
     public String           status;
-
-    @Nullable
-    @Column(name = "is_deleted")
-    public Boolean          isDeleted;
-
-    @Column(name = "created_at")
-    public LocalDateTime createdAt;
-
-    @Column(name = "updated_at")
-    public LocalDateTime    updatedAt;
-
-    @Nullable
-    @Column(name = "deleted_at")
-    public LocalDateTime    deletedAt;
-
-    @Column(name = "created_by")
-    public String           createdBy;
-
-    @Column(name = "updated_by")
-    public String           updatedBy;
-
-    @Nullable
-    @Column(name = "deleted_by")
-    public String           deletedBy;
 }

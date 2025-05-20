@@ -67,7 +67,6 @@ public class EventService {
     private void preprocess(Event event) {
         String generatedSlug = slugify.slugify(event.getName());
         event.setSlug(generatedSlug);
-        event.setId(IdGenerator.newUuid());
         if(Objects.isNull(event.getCreatedAt())){
             event.setCreatedAt(LocalDateTime.now());
         }
