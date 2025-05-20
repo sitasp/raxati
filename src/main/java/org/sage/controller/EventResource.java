@@ -12,7 +12,7 @@ import org.sage.util.ResourceUtils;
 import java.util.List;
 import java.util.Optional;
 
-@Path("/event")
+@Path("/events")
 @RunOnVirtualThread
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
