@@ -2,28 +2,41 @@ package org.sage.entity;
 
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
+import org.sage.annotation.AuditPurpose;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class EchoEntity extends BaseULIDEntity {
+public class PostEntity extends BaseULIDEntity {
 
     @ManyToOne
     @JoinColumn(name = "author_id", referencedColumnName = "id", nullable = false)
     private UserEntity      author;
 
+    @Column(name = "author_id_string", length = 26)
+    @AuditPurpose(reason = "string form of FK for author_id")
+    private String          authorIdString;
+
     @Column(columnDefinition = "TEXT", nullable = false)
     private String          content;
 
     @ManyToOne
-    @JoinColumn(name = "parent_echo_id", referencedColumnName = "id")
-    private EchoEntity      parentEcho;
+    @JoinColumn(name = "parent_post_id", referencedColumnName = "id")
+    private PostEntity      parentPost;
+
+    @Column(name = "parent_post_id_string", length = 26)
+    @AuditPurpose(reason = "string form of FK for parent_post_id")
+    private String          parentPostIdString;
 
     @ManyToOne
     @JoinColumn(name = "reshared_from_id", referencedColumnName = "id")
-    private EchoEntity      resharedFrom;
+    private PostEntity      resharedFrom;
+
+    @Column(name = "reshared_from_id_string", length = 26)
+    @AuditPurpose(reason = "string form of FK for reshared_from_id")
+    private String          resharedFromIdString;
 
     @Column(name = "visibility")
     private String          visibility;

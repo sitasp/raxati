@@ -1,9 +1,9 @@
 package org.sage.entity;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.sage.annotation.AuditPurpose;
 
 import java.time.LocalDateTime;
 
@@ -26,6 +26,10 @@ public class EventEntity extends BaseULIDEntity {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "topic_id", referencedColumnName = "id", nullable = false)
     public TopicEntity      topic;
+
+    @Column(name = "topic_id_string", length = 26)
+    @AuditPurpose(reason = "string form of FK for topic_id")
+    private String          topicIdString;
 
     @Column(name = "slug")
     public String           slug;
