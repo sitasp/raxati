@@ -13,7 +13,7 @@ import org.sage.util.ResourceUtils;
 
 import java.util.Optional;
 
-@Path("/topic")
+@Path("/topics")
 @RunOnVirtualThread
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
