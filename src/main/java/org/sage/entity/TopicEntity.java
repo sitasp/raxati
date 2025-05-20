@@ -1,10 +1,12 @@
 package org.sage.entity;
 
 import jakarta.annotation.Nullable;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity(name = "topics")
@@ -29,4 +31,9 @@ public class TopicEntity extends BaseULIDEntity {
 
     @Column(name = "status")
     private String           status;
+
+    @ElementCollection
+    @CollectionTable(name = "topic_posts", joinColumns = @JoinColumn(name = "topic_id"))
+    @Column(name = "post_id")
+    public List<PostEntity> posts = new ArrayList<>();
 }

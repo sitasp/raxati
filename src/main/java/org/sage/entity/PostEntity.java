@@ -31,8 +31,17 @@ public class PostEntity extends BaseULIDEntity {
     @Column(name = "visibility")
     private String          visibility;
 
+    @Column(name = "number_of_likes")
+    public Long             numberOfLikes;
+
+    @Column(name = "number_of_views")
+    public Long             numberOfViews;
+
+    @Column(name = "status")
+    public String           status;
+
     @ElementCollection
-    @CollectionTable(name = "echo_media_urls", joinColumns = @JoinColumn(name = "echo_id"))
+    @CollectionTable(name = "post_media_urls", joinColumns = @JoinColumn(name = "post_id"))
     @Column(name = "media_url")
     public List<String>     mediaUrls = new ArrayList<>();
 }
