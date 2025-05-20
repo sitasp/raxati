@@ -25,8 +25,8 @@ public class PostEntity extends BaseULIDEntity {
     private PostEntity      parentPost;
 
     @ManyToOne
-    @JoinColumn(name = "reshared_from_id", referencedColumnName = "id")
-    private PostEntity      resharedFrom;
+    @JoinColumn(name = "reshared_post_id", referencedColumnName = "id")
+    private PostEntity      resharedPost;
 
     @Column(name = "visibility")
     private String          visibility;
