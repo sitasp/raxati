@@ -11,7 +11,6 @@ import org.sage.entity.TopicEntity;
 import org.sage.mapper.TopicMapper;
 import org.sage.object.domain.Topic;
 import org.sage.repository.TopicRepository;
-import org.sage.util.IdGenerator;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
