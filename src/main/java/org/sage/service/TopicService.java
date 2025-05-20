@@ -72,7 +72,6 @@ public class TopicService {
     private void preprocess(Topic topic) {
         String generatedSlug = slugify.slugify(topic.getTitle());
         topic.setSlug(generatedSlug);
-        topic.setId(IdGenerator.newUuid());
         if(Objects.isNull(topic.getCreatedAt())){
             topic.setCreatedAt(LocalDateTime.now());
         }

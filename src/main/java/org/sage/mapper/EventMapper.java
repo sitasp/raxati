@@ -22,24 +22,20 @@ public abstract class EventMapper {
 
     public abstract List<Event> toDomainList(List<EventEntity> entities);
 
-    @Mapping(source = "id", target = "id", qualifiedByName = "ulidToString")
     public abstract Event toDomain(EventEntity eventEntity);
 
     @InheritInverseConfiguration(name = "toDomain")
-    @Mapping(source = "id", target = "id", qualifiedByName = "stringToUlid")
     public abstract EventEntity toEntity(Event event);
 
-    @Mapping(source = "id", target = "id", qualifiedByName = "stringToUlid")
     public abstract void updateEntityFromDomain(Event event, @MappingTarget EventEntity eventEntity);
 
-    @Mapping(source = "id", target = "id", qualifiedByName = "ulidToString")
     public abstract void updateDomainFromEntity(EventEntity eventEntity, @MappingTarget Event event);
 
     @AfterMapping
     protected void extractTopicId(EventEntity entity, @MappingTarget Event domain) {
         TopicEntity topic = entity.getTopic();
         if (Objects.nonNull(topic)) {
-            domain.setTopicId(topic.getIdString());
+            domain.setTopicId(topic.getId());
         }
     }
 
@@ -52,15 +48,5 @@ public abstract class EventMapper {
                     .orElseThrow(() -> new IllegalArgumentException("Invalid topicId: " + topicId));
             entity.setTopic(topic);
         }
-    }
-
-    @Named("ulidToString")
-    static String ulidToString(Ulid ulid) {
-        return ulid != null ? ulid.toString() : null;
-    }
-
-    @Named("stringToUlid")
-    static Ulid stringToUlid(String id) {
-        return id != null ? Ulid.from(id) : null;
     }
 }

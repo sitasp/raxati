@@ -3,11 +3,12 @@ package org.sage.entity;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Data;
-import org.sage.annotation.AuditPurpose;
+import lombok.EqualsAndHashCode;
 
 import java.time.LocalDateTime;
 
-@Entity(name = "event")
+@EqualsAndHashCode(callSuper = true)
+@Entity(name = "events")
 @Data
 public class EventEntity extends BaseULIDEntity {
 
@@ -27,37 +28,9 @@ public class EventEntity extends BaseULIDEntity {
     @JoinColumn(name = "topic_id", referencedColumnName = "id", nullable = false)
     public TopicEntity      topic;
 
-    @Column(name = "topic_id_string", length = 26)
-    @AuditPurpose(reason = "string form of FK for topic_id")
-    private String          topicIdString;
-
     @Column(name = "slug")
     public String           slug;
 
     @Column(name = "status")
     public String           status;
-
-    @Nullable
-    @Column(name = "is_deleted")
-    public Boolean          isDeleted;
-
-    @Column(name = "created_at")
-    public LocalDateTime createdAt;
-
-    @Column(name = "updated_at")
-    public LocalDateTime    updatedAt;
-
-    @Nullable
-    @Column(name = "deleted_at")
-    public LocalDateTime    deletedAt;
-
-    @Column(name = "created_by")
-    public String           createdBy;
-
-    @Column(name = "updated_by")
-    public String           updatedBy;
-
-    @Nullable
-    @Column(name = "deleted_by")
-    public String           deletedBy;
 }

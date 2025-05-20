@@ -3,10 +3,13 @@ package org.sage.entity;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import java.time.LocalDateTime;
 
-@Entity(name = "user")
+@EqualsAndHashCode(callSuper = true)
+@Data
+@Entity(name = "users")
 public class UserEntity extends BaseULIDEntity {
 
     @Column(name = "user_name", unique = true, nullable = false)
@@ -29,27 +32,4 @@ public class UserEntity extends BaseULIDEntity {
 
     @Column(name = "bio")
     public String           bio;
-
-    @Column(name = "is_deleted")
-    public Boolean          isDeleted;
-
-    @Column(name = "created_at")
-    public LocalDateTime    createdAt;
-
-    @Column(name = "updated_at")
-    public LocalDateTime    updatedAt;
-
-
-    @Column(name = "deleted_at", nullable = true)
-    public LocalDateTime    deletedAt;
-
-    @Column(name = "created_by")
-    public String           createdBy;
-
-    @Column(name = "updated_by")
-    public String           updatedBy;
-
-    @Nullable
-    @Column(name = "deleted_by")
-    public String           deletedBy;
 }

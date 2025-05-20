@@ -1,48 +1,55 @@
 package org.sage.entity;
 
-import com.github.f4b6a3.ulid.Ulid;
 import com.github.f4b6a3.ulid.UlidFactory;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
-import org.sage.configuration.ULIDBinaryConverter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
+@EqualsAndHashCode(callSuper = true)
+@Data
 @MappedSuperclass
 public abstract class BaseULIDEntity extends PanacheEntityBase implements Serializable{
 
     private static final UlidFactory ulidFactory = UlidFactory.newMonotonicInstance();
 
     @Id
-    @Convert(converter = ULIDBinaryConverter.class)
-    @Column(name = "id", columnDefinition = "BYTEA")
-    private Ulid id;
+    @Column(name = "id", length = 26)
+    private String id;
 
-    @Column(name = "id_string", length = 26, nullable = false, unique = true)
-    private String idString;
+    @Nullable
+    @Column(name = "is_deleted")
+    private Boolean          isDeleted;
+
+    @Column(name = "created_at")
+    private LocalDateTime    createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDateTime    updatedAt;
+
+    @Nullable
+    @Column(name = "deleted_at")
+    private LocalDateTime    deletedAt;
+
+    @Column(name = "created_by")
+    private String           createdBy;
+
+    @Column(name = "updated_by")
+    private String           updatedBy;
+
+    @Nullable
+    @Column(name = "deleted_by")
+    private String           deletedBy;
 
     @PrePersist
     public void assignId(){
         if(Objects.isNull(id)){
-            this.id = ulidFactory.create();
-            this.idString = this.id.toString();
+            this.id = ulidFactory.create().toString();
         }
-    }
-
-    public Ulid getId() {
-        return id;
-    }
-
-    public void setId(Ulid id) {
-        this.id = id;
-    }
-
-    public String getIdString() {
-        return idString;
-    }
-
-    public void setIdString(String idString) {
-        this.idString = idString;
     }
 }
