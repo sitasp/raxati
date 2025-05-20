@@ -7,15 +7,16 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.sage.constant.RaxatiConstants;
+import org.sage.entity.PostEntity;
 import org.sage.entity.TopicEntity;
+import org.sage.mapper.PostMapper;
 import org.sage.mapper.TopicMapper;
+import org.sage.object.domain.Post;
 import org.sage.object.domain.Topic;
 import org.sage.repository.TopicRepository;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @ApplicationScoped
 @AllArgsConstructor
@@ -25,6 +26,8 @@ public class TopicService {
     private final TopicRepository topicRepository;
 
     private final TopicMapper topicMapper;
+
+    private final PostMapper postMapper;
 
     private final Slugify slugify;
 
@@ -66,6 +69,15 @@ public class TopicService {
             log.error("Failed to save topic", e);
             throw e;
         }
+    }
+
+    public List<Post> fetchPostsUsingTopicId(String topicId) {
+        Optional<TopicEntity> topicEntityOptional = topicRepository.findById(topicId);
+        if(topicEntityOptional.isPresent()){
+            List<PostEntity> postEntities = topicEntityOptional.get().getPosts();
+            return postMapper.toDomainList(postEntities);
+        }
+        return new ArrayList<>();
     }
 
     private void preprocess(Topic topic) {

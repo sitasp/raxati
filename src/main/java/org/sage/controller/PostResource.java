@@ -7,9 +7,12 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.sage.object.domain.Post;
+import org.sage.object.domain.Topic;
 import org.sage.service.PostService;
+import org.sage.service.TopicService;
 import org.sage.util.ResourceUtils;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -21,6 +24,9 @@ public class PostResource {
 
     @Inject
     PostService postService;
+
+    @Inject
+    TopicService topicService;;
 
     @POST
     @Path("/create")
@@ -42,4 +48,10 @@ public class PostResource {
         return Response.ok(postService.fetchPostsByUserId(userId)).build();
     }
 
+    @GET
+    @Path("/topic/{topicId}")
+    public Response getPostsByTopicId(@PathParam("topicId") String topicId) {
+        List<Post> topicPosts = topicService.fetchPostsUsingTopicId(topicId);
+        return Response.ok(topicPosts).build();
+    }
 }

@@ -35,5 +35,5 @@ public class TopicEntity extends BaseULIDEntity {
     @ElementCollection
     @CollectionTable(name = "topic_posts", joinColumns = @JoinColumn(name = "topic_id"))
     @Column(name = "post_id")
-    public List<PostEntity> posts = new ArrayList<>();
+    private List<PostEntity> posts = new ArrayList<>();
 }
