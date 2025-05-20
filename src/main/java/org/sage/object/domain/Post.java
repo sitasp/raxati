@@ -3,11 +3,9 @@ package org.sage.object.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import jakarta.persistence.*;
 import lombok.Data;
-import org.sage.entity.PostEntity;
-import org.sage.entity.UserEntity;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +13,7 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Post {
+    private String          id;
     private String          authorId;
     private String          content;
     private String          parentPostId;
@@ -24,4 +23,11 @@ public class Post {
     public Long             numberOfViews;
     public String           status;
     public List<String>     mediaUrls = new ArrayList<>();
+    private Boolean         isDeleted;
+    private LocalDateTime   createdAt;
+    private LocalDateTime   updatedAt;
+    private LocalDateTime   deletedAt;
+    private String          createdBy;
+    private String          updatedBy;
+    private String          deletedBy;
 }
